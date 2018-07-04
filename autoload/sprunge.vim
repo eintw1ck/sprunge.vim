@@ -95,32 +95,11 @@ function! sprunge#FlushLeft(buffer) "{{{
 endfunction
 
 function! sprunge#Post(buffer, ...) "{{{
-  if a:0 > 0
-      if a:1 ==? "0x0"
-          return system('curl -sg -F "file=<-" https://0x0.st', a:buffer)
-      elseif a:1 ==? "sprunge"
-          return system('curl -s -F "sprunge=<-" http://sprunge.us', a:buffer)
-      elseif a:1 ==? "ix"
-          return system('curl -s -F "f:1=<-" http://ix.io', a:buffer)
-      endif
-  else
-      if !exists('g:sprunge_cmd')
-        for l:provider in split(g:sprunge_providers, ',')
-            let l:url = sprunge#Post(a:buffer, l:provider)
-            if l:url =~# '^http.*' | break | endif
-        endfor
-        if !exists('l:url')
-            let l:url = system('curl -s -F "sprunge=<-" http://sprunge.us', a:buffer)
-        endif
-      else
-        let l:url = system(g:sprunge_cmd, a:buffer)
-      endif
-  endif
-  return l:url[0:-2]
+  return system('curl -sg -F "file=<-" https://0x0.st', a:buffer)
 endfunction
 
 function! sprunge#Sprunge(line1, line2)  "{{{
-  if !exists('g:sprunge_cmd') && !executable('curl')
+  if !executable('curl')
       echoerr "Sprunge: requires 'curl'"
       return
   endif

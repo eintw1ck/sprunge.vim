@@ -22,25 +22,11 @@ else
   let g:sprunge_clipboard = 'all'
 endif
 
-if !exists('g:sprunge_providers')    | let g:sprunge_providers = 'sprunge,ix' | endif
-if !exists('g:sprunge_map')          | let g:sprunge_map = '<Leader>s'        | endif
 if !exists('g:sprunge_tabs2spaces')  | let g:sprunge_tabs2spaces = 0          | endif
 if !exists('g:sprunge_flush_left')   | let g:sprunge_flush_left  = 0          | endif
 
 " Commands & Mappings {{{1
 command! -nargs=0 -range=% Sprunge call sprunge#Sprunge(<line1>,<line2>)
-
-if !hasmapto('<Plug>Sprunge')
-    try
-        exe "nmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
-        exe "xmap <unique> " . g:sprunge_map . " <Plug>Sprunge"
-    catch /^Vim(.*):E227:/
-        if(&verbose != 0)
-            echohl WarningMsg|echomsg 'Error: sprunge default mapping: ' . g:sprunge_map
-            \ . 'is already taken, refusing to overwrite it. See :h SprungeConfig-map' |echohl None
-        endif
-    endtry
-endif
 
 nnoremap <unique> <script> <Plug>Sprunge :Sprunge<CR>
 xnoremap <unique> <script> <Plug>Sprunge :Sprunge<CR>
