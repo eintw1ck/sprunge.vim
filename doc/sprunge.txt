@@ -87,14 +87,6 @@ g:sprunge_clipboard_cmd                            *SprungeConfig-clipboard-cmd*
         let g:sprunge_clipboard_cmd = 'clipboard_app --option'
 <
 
-g:sprunge_open_browser                              *SprungeConfig-open-browser*
-    Browser trigger
-
-    Use this option to open the sprunge link automatically in your default
-    browser. Disabled by default. >
-        let g:sprunge_open_browser = 0
-<
-
 g:sprunge_flush_left                                  *SprungeConfig-flush-left*
     Left align
 

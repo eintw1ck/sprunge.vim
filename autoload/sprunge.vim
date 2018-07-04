@@ -94,24 +94,6 @@ function! sprunge#FlushLeft(buffer) "{{{
   return l:buffer
 endfunction
 
-function! sprunge#OpenBrowser(url) "{{{
-  if a:url =~# '//sprunge.us/'
-      let l:url = a:url . '?' . &filetype
-  elseif a:url =~# '//ix.io/'
-      let l:url = a:url . '/' . &filetype
-  else
-      let l:url = a:url
-  endif
-  if has("win32")
-    exe "!start cmd /cstart /b ".l:url.""
-  elseif $DISPLAY !~ '^\w'
-    exe "silent !sensible-browser \"".l:url."\""
-  else
-    exe "silent !sensible-browser -T \"".l:url."\""
-  endif
-  redraw!
-endfunction
-
 function! sprunge#Post(buffer, ...) "{{{
   if a:0 > 0
       if a:1 ==? "sprunge"
@@ -164,7 +146,6 @@ function! sprunge#Sprunge(line1, line2)  "{{{
       endif
   else
       call sprunge#CopyToClipboard(url)
-      if g:sprunge_open_browser | call sprunge#OpenBrowser(url) | endif
       redraw | echomsg 'Done: ' . url
   endif
 endfunction

@@ -23,7 +23,6 @@ else
 endif
 
 if !exists('g:sprunge_providers')    | let g:sprunge_providers = 'sprunge,ix' | endif
-if !exists('g:sprunge_open_browser') | let g:sprunge_open_browser = 0         | endif
 if !exists('g:sprunge_map')          | let g:sprunge_map = '<Leader>s'        | endif
 if !exists('g:sprunge_tabs2spaces')  | let g:sprunge_tabs2spaces = 0          | endif
 if !exists('g:sprunge_flush_left')   | let g:sprunge_flush_left  = 0          | endif
