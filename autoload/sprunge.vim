@@ -96,7 +96,9 @@ endfunction
 
 function! sprunge#Post(buffer, ...) "{{{
   if a:0 > 0
-      if a:1 ==? "sprunge"
+      if a:1 ==? "0x0"
+          return system('curl -sg -F "file=<-" https://0x0.st', a:buffer)
+      elseif a:1 ==? "sprunge"
           return system('curl -s -F "sprunge=<-" http://sprunge.us', a:buffer)
       elseif a:1 ==? "ix"
           return system('curl -s -F "f:1=<-" http://ix.io', a:buffer)
